@@ -153,19 +153,19 @@ CREATE TABLE `players` (
 --
 -- Indexes for dumped tables
 --
-CREATE PROCEDURE move_piece(x1,y1,x2,y2)
+CREATE PROCEDURE move_piece(x1,x2)
 BEGIN
 		DECLARE p, p_color CHAR;
 		SELECT piece, piece_color INTO p, p_color
-		FROM 'board' WHERE X=x1 AND Y=y1;
+		FROM 'board' WHERE X=x1;
 
 		UPDATE board
 		SET piece=p , piece_color=p_color
-		WHERE X=x2 AND Y=y2;
+		WHERE X=x2;
 
 		UPDATE board
 		SET piece=NULL,piece_color=NULL
-		WHERE X=x1 AND Y=y1;
+		WHERE X=x1;
 
 		UPDATE game_status SET p_turn=IF(p_color='W','B','W');
 END$$
