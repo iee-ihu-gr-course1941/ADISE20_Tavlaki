@@ -1,11 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-
-    <title>Tavlaki</title>
-</head>
-
-<body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Πλακωτό</title>
     
-<p>hello world </p>
+</head>
+<body>
 
-<p>This is a pipe</p>
+<h1><b>Τάβλι Πλακωτό</b></h1>
+
+<div id="tavli_board"></div> <br>
+
+<div id="game_initializer">
+    <input id="username"> 
+
+    <select id="pcolor">
+        <option value="R">R</option>
+        <option value="G">G</option>
+    </select>
+
+    <button id="tavli_login">ΕΙΣΟΔΟΣ ΣΤΟ ΠΑΙΧΝΙΔΙ</button><br>
+</div>
+
+<div id="game_info"></div>
+
+<div id="dice"><button id="roll_dice">ΡΙΞΤΕ ΤΑ ΖΑΡΙΑ</button>  : <span id="dice_result"></span><span id="dice1"></span><span id="dice2"></span></div>
+
+<div id="div1">
+Δώστε Τρέχουσα Θέση (1-24): <input id="currentpos"> 
+</div>
+
+<div id="div2">
+Δώσε Νέα Θέση (1-24) : <input id="newpos"> 
+</div>
+
+<br/><br/>
+
+<div>
+	<button id="buttonpos">Μετακίνηση</button><br>
+</div> 
+
+<br/><br/>
+
+<button id="reset">ΕΝΑΡΞΗ/RESET</button><br>
 </body>
+</html>
