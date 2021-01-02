@@ -166,6 +166,8 @@ BEGIN
 		UPDATE board
 		SET piece=NULL,piece_color=NULL
 		WHERE X=x1 AND Y=y1;
+
+		UPDATE game_status SET p_turn=IF(p_color='W','B','W');
 END$$
 DELIMITER ;
 --
