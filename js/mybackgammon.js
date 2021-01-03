@@ -25,7 +25,7 @@ $(function() {
 });
 
 
-//function draw_empty_board(p) {
+function draw_empty_board(p) {
 	
 	if(p!='B') {p='W';}
 	var draw_init = {
@@ -47,14 +47,14 @@ $(function() {
 	$('.chess_square').click(click_on_piece);
 }
 
-//$(function () {
+$(function () {
 	draw_empty_board();
 	fill_board();
 	
 });
 
 
-//$(function () {
+$(function () {
 	draw_empty_board();
 	fill_board();
 	
@@ -68,14 +68,14 @@ $(function() {
 });
 
 
-//function fill_board() {
+function fill_board() {
 	$.ajax({url: "chess.php/board/", 
 		headers: {"X-Token": me.token},
 		success: fill_board_by_data });
 }
 
 
-//function fill_board_by_data(data) {
+function fill_board_by_data(data) {
 	board=data;
 	for(var i=0;i<data.length;i++) {
 		var o = data[i];
@@ -96,4 +96,38 @@ $(function() {
 	} else {
 		$('#move_div').hide(1000);
 	}
+}
+
+function login_to_game() {
+	if($('#username').val()==''){
+		alert("Please enter a username");
+		return;
+	}
+	var p_color = $('#pcolor').val();
+	draw_empty_board(p_color);
+	fill_board();
+
+	$.ajax({url: "chess.php/players/"+p_color,
+			method: 'PUT' ,
+			dataType: "json",
+			contentType: 'application/json',
+			data: JSON.stringify( {username: $('#username').val(), piece_color: p_color} )
+			success: login_result,
+			error: login_error})
+}
+
+function login_result(data) {
+	me = data[0];
+	$('#game_initializer').hide();
+	update_info();
+	game_status_update();
+}
+
+function login_error(data,y,z,c) {
+	var x = data.responseJSON;
+	alert(x.errormesg);
+}
+
+function game_status_update() {
+	$.ajax({url: "chess.php/status/", success: update_status});
 }

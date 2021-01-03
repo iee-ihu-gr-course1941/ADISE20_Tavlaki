@@ -63,8 +63,8 @@ function handle_player($method, $request,$input) {
 				   else {header("HTTP/1.1 400 Bad Request"); 
 						 print json_encode(['errormesg'=>"Method $method not allowed here."]);}
                     break;
-        case 'B': 
-		case 'W': handle_user($method, $b,$input);
+        case 'G': 
+		case 'R': handle_user($method, $b,$input);
 					break;		
 		default: header("HTTP/1.1 404 Not Found");
 				 print json_encode(['errormesg'=>"Player $b not found."]);
