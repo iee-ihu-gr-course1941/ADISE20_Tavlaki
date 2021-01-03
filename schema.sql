@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 01, 2021 at 05:41 PM
+-- Generation Time: Jan 03, 2021 at 05:26 PM
 -- Server version: 10.1.47-MariaDB-0+deb9u1
 -- PHP Version: 7.0.33-0+deb9u10
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tavlaki`
+-- Database: `schema`
 --
 
 DELIMITER $$
@@ -147,29 +147,14 @@ DELIMITER ;
 
 CREATE TABLE `players` (
   `Username` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `p_color` enum('R','G') COLLATE utf8_bin NOT NULL
+  `p_color` enum('R','G') COLLATE utf8_bin NOT NULL,
+  `Token` varchar(16) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Indexes for dumped tables
 --
-CREATE PROCEDURE move_piece(x1,x2)
-BEGIN
-		DECLARE p, p_color CHAR;
-		SELECT piece, piece_color INTO p, p_color
-		FROM 'board' WHERE X=x1;
 
-		UPDATE board
-		SET piece=p , piece_color=p_color
-		WHERE X=x2;
-
-		UPDATE board
-		SET piece=NULL,piece_color=NULL
-		WHERE X=x1;
-
-		UPDATE game_status SET p_turn=IF(p_color='W','B','W');
-END$$
-DELIMITER ;
 --
 -- Indexes for table `board`
 --
