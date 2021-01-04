@@ -99,23 +99,22 @@ function fill_board_by_data(data) {
 }
 
 function login_to_game() {
-	if($('#username').val()==''){
-		alert("Please enter a username");
+	if($('#username').val()=='') {
+		alert('You have to set a username');
 		return;
 	}
 	var p_color = $('#pcolor').val();
 	draw_empty_board(p_color);
 	fill_board();
-
-	$.ajax({url: "chess.php/players/"+p_color,
-			method: 'PUT' ,
+	
+	$.ajax({url: "chess.php/players/"+p_color, 
+			method: 'PUT',
 			dataType: "json",
+			headers: {"X-Token": me.token},
 			contentType: 'application/json',
 			data: JSON.stringify( {username: $('#username').val(), piece_color: p_color}),
 			success: login_result,
 			error: login_error});
-			
-			
 }
 
 
