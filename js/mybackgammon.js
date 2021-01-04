@@ -111,10 +111,13 @@ function login_to_game() {
 			method: 'PUT' ,
 			dataType: "json",
 			contentType: 'application/json',
-			data: JSON.stringify( {username: $('#username').val(), piece_color: p_color} )
+			data: JSON.stringify( {username: $('#username').val(), piece_color: p_color}),
 			success: login_result,
-			error: login_error})
+			error: login_error});
+			
+			
 }
+
 
 function login_result(data) {
 	me = data[0];
