@@ -1,6 +1,6 @@
 <?php
 
-function show_users() {
+function show_users() {  //diavazoun tous players kai to tuponi se json 
 	global $mysqli;
 	$sql = 'select username,piece_color from players';
 	$st = $mysqli->prepare($sql);
@@ -10,7 +10,7 @@ function show_users() {
 	print json_encode($res->fetch_all(MYSQLI_ASSOC), JSON_PRETTY_PRINT)
 }
 
-function show_user($b) {
+function show_user($b) { //orisma G i R kai epistrefi se json ta stoixeia tou xristi
 	global $mysqli;
 	$sql = 'select username,piece_color from players where piece_color=?';
 	$st = $mysqli->prepare($sql);
@@ -22,7 +22,7 @@ function show_user($b) {
 
 }
 
-function set_user($b,$input) {
+function set_user($b,$input) { //arxikopiei enan xristi kai elegxei an einai diathesimo to xrwma tou 
 	if(!isset($input['username'])){
 		header("HTTP/1.1 400 Bad Request");
 		print json_encode(['errormesg'=>"No username given."]);
