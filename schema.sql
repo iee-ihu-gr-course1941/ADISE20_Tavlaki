@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 03, 2021 at 05:26 PM
+-- Generation Time: Jan 04, 2021 at 05:40 PM
 -- Server version: 10.1.47-MariaDB-0+deb9u1
 -- PHP Version: 7.0.33-0+deb9u10
 
@@ -148,7 +148,7 @@ DELIMITER ;
 CREATE TABLE `players` (
   `Username` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `p_color` enum('R','G') COLLATE utf8_bin NOT NULL,
-  `Token` varchar(16) COLLATE utf8_bin NOT NULL
+  `Token` varchar(100) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
