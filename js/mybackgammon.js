@@ -1,3 +1,9 @@
+var me={token:null,piece_color:null};
+var game_status={};
+var board={};
+var last_update=new Date().getTime();
+var timer=null;
+
 $(function() {
     console.log( "ready!" );
   
@@ -9,7 +15,7 @@ $(function() {
   function drawBoard(){
     console.log ("Drawing the Board");
     
-    drawPiece();
+   drawPiece();
     
   };
   
@@ -20,10 +26,9 @@ $(function() {
     
   };
   
-  drawBoard();
+  //drawBoard();
   
 });
-
 
 function draw_empty_board(p) {
 	
@@ -47,11 +52,10 @@ function draw_empty_board(p) {
 	$('.chess_square').click(click_on_piece);
 }
 
-$(function () {
-	draw_empty_board();
-	fill_board();
-	
-});
+
+
+
+
 
 
 $(function () {
