@@ -82,9 +82,18 @@ function fill_board() {
 function fill_board_by_data(data) {
 	board=data;
 	for(var i=0;i<data.length;i++) {
+		/*
+		var o = data[i];
+		var id = '#square_'+ o.x + '_' + o.y ;
+		// var id = '#square_'+ o.x +'_' + o.y;
+		//var c = (o.piece!=null)?o.piece_color + o.piece:'';
+		var pc= (o.piece!=null)?'piece'+o.piece_color:'';
+		var im = (o.piece!=null)?'<img class="piece" '+' src="images/'+pc+'.png">':'';
+		$(id).addClass(o.b_color+'_square').html(im);
+		*/
 		var o = data[i];
 		var id = '#square_'+ o.x +'_' + o.y;
-		//var c = (o.piece!=null)?o.piece_color + o.piece:'';
+		var c = (o.piece!=null)?o.piece_color + o.piece:'';
 		var pc= (o.piece!=null)?'piece'+o.piece_color:'';
 		var im = (o.piece!=null)?'<img class="piece '+pc+'" src="images/'+c+'.png">':'';
 		$(id).addClass(o.b_color+'_square').html(im);
