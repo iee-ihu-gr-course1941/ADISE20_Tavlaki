@@ -1,4 +1,8 @@
 
+#chess_table TD {width: 3em; height:3em;border:1px solid black;text-align:center;}
+#chess_table {border-collapse: collapse;}
+TD.R_square {background-color:#DDD;}
+TD.G_square {background-color:#FFF;}
 
 .board {
   width: 610px;
