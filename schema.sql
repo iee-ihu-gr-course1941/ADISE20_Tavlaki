@@ -37,59 +37,100 @@ DELIMITER ;
 --
 -- Table structure for table `board`
 --
+DROP TABLE IF EXISTS `board`;
 
-CREATE TABLE `board` (
+/* CREATE TABLE `board` (
   `Position` int(11) NOT NULL,
   `p_color` enum('G','R') COLLATE utf8_bin NOT NULL,
   `pieces` enum('P1','P2','P3','P4','P5','P6','P7','P8','P9','P10','P11','P12','P13','P14','P15') COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+*/
+
+CREATE TABLE `board` (
+  `x` tinyint(1) NOT NULL,
+  `b_color` enum('G','R') NOT NULL,
+  `first_color` enum('R','G') DEFAULT NULL,
+  `second_color` enum('R','G') DEFAULT NULL,
+  `total_pieces` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY ('x')
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `board`
 --
 
-INSERT INTO `board` (`Position`, `p_color`, `pieces`) VALUES
-(1, 'G', 'P1'),
-(2, 'G', 'P2'),
-(3, 'G', 'P3'),
-(4, 'G', 'P4'),
-(5, 'G', 'P5'),
-(6, '', ''),
-(7, '', ''),
-(8, '', ''),
-(9, '', ''),
-(10, '', ''),
-(11, '', ''),
-(12, '', ''),
-(13, '', ''),
-(14, '', ''),
-(15, '', ''),
-(16, '', ''),
-(17, '', ''),
-(18, '', ''),
-(19, '', ''),
-(20, 'R', 'P5'),
-(21, 'R', 'P4'),
-(22, 'R', 'P3'),
-(23, 'R', 'P2'),
-(24, 'R', 'P1');
+INSERT INTO `board` (`x`, `p_color`, `first_color`, 'second_color', 'total_pieces') VALUES
+(1, 'R', 'R', 'R', 15),
+(2, 'G', '', '' , 0),
+(3, 'R', '', '' , 0)),
+(4, 'G', '', '' , 0)),
+(5, 'R', '', '' , 0)),
+(6, 'G', '', '' , 0)),
+(7, 'R', '', '' , 0)),
+(8, 'G', '', '' , 0)),
+(9, 'R', '', '' , 0)),
+(10, 'G', '', '' , 0)),
+(11, 'R', '', '' , 0)),
+(12, 'G', '', '' , 0)),
+(13, 'R', '', '' , 0)),
+(14, 'G', '', '' , 0)),
+(15, 'R', '', '' , 0)),
+(16, 'G', '', '' , 0)),
+(17, 'R', '', '' , 0)),
+(18, 'G', '', '' , 0)),
+(19, 'R', '', '' , 0)),
+(20, 'G', '', '' , 0)),
+(21, 'R', '', '' , 0)),
+(22, 'G', '', '' , 0)),
+(23, 'R', '', '' , 0)),
+(24, 'G', 'G','G', 15);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `board_empty`
 --
+DROP TABLE IF EXISTS `board_empty`;
+
 
 CREATE TABLE `board_empty` (
-  `Position` int(11) NOT NULL,
-  `p_color` enum('G','R') COLLATE utf8_bin NOT NULL,
-  `pieces` enum('P1','P2','P3','P4','P5','P6','P7','P8','P9','P10','P11','P12','P13','P14','P15') COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `x` tinyint(1) NOT NULL,
+  `b_color` enum('G','R') NOT NULL,
+  `first_color` enum('R','G') DEFAULT NULL,
+  `second_color` enum('R','G') DEFAULT NULL,
+  `total_pieces` tinyint(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY ('x')
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `board_empty`
 --
-
+INSERT INTO `board_empty` (`x`, `p_color`, `first_color`, 'second_color', 'total_pieces') VALUES
+(1, 'R', 'R', 'R', 15),
+(2, 'G', '', '' , 0),
+(3, 'R', '', '' , 0)),
+(4, 'G', '', '' , 0)),
+(5, 'R', '', '' , 0)),
+(6, 'G', '', '' , 0)),
+(7, 'R', '', '' , 0)),
+(8, 'G', '', '' , 0)),
+(9, 'R', '', '' , 0)),
+(10, 'G', '', '' , 0)),
+(11, 'R', '', '' , 0)),
+(12, 'G', '', '' , 0)),
+(13, 'R', '', '' , 0)),
+(14, 'G', '', '' , 0)),
+(15, 'R', '', '' , 0)),
+(16, 'G', '', '' , 0)),
+(17, 'R', '', '' , 0)),
+(18, 'G', '', '' , 0)),
+(19, 'R', '', '' , 0)),
+(20, 'G', '', '' , 0)),
+(21, 'R', '', '' , 0)),
+(22, 'G', '', '' , 0)),
+(23, 'R', '', '' , 0)),
+(24, 'G', 'G','G', 15);
+/*
 INSERT INTO `board_empty` (`Position`, `p_color`, `pieces`) VALUES
 (1, 'G', 'P1'),
 (2, 'G', 'P2'),
@@ -115,12 +156,14 @@ INSERT INTO `board_empty` (`Position`, `p_color`, `pieces`) VALUES
 (22, 'R', 'P3'),
 (23, 'R', 'P2'),
 (24, 'R', 'P1');
-
+*/
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `game_status`
 --
+DROP TABLE IF EXISTS `game_status`;
+
 
 CREATE TABLE `game_status` (
   `status` enum('not active','initialized','started','ended','aborded') COLLATE utf8_bin NOT NULL,
@@ -132,6 +175,15 @@ CREATE TABLE `game_status` (
 --
 -- Triggers `game_status`
 --
+
+/*
+LOCK TABLES `game_status` WRITE;
+
+INSERT INTO `game_status` VALUES ('started','B',NULL,'2020-12-17 13:22:25');
+
+UNLOCK TABLES;
+*/
+
 DELIMITER $$
 CREATE TRIGGER `game_status_update` BEFORE UPDATE ON `game_status` FOR EACH ROW BEGIN
 SET NEW.last_change = NOW();
@@ -144,6 +196,8 @@ DELIMITER ;
 --
 -- Table structure for table `players`
 --
+DROP TABLE IF EXISTS `players`;
+
 
 CREATE TABLE `players` (
   `Username` varchar(20) COLLATE utf8_bin DEFAULT NULL,

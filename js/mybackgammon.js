@@ -6,7 +6,6 @@ var timer=null;
 
 $(function() {
     console.log( "ready!" );
-  
   function init(){
     //initial board state
   	  
@@ -32,10 +31,10 @@ $(function() {
 
 function draw_empty_board(p) {
 	
-	if(p!='B') {p='W';}
+	if(p!='G') {p='R';}
 	var draw_init = {
-		'W': {i1:8,i2:0,istep:-1,j1:1,j2:9,jstep:1},
-		'B': {i1:1,i2:9,istep:1, j1:8,j2:0,jstep:-1}
+		'R': {i1:8,i2:0,istep:-1,j1:1,j2:9,jstep:1},
+		'G': {i1:1,i2:9,istep:1, j1:8,j2:0,jstep:-1}
 	};
 	var s=draw_init[p];
 	var t='<table id="chess_table">';
@@ -64,6 +63,7 @@ $(function () {
 	
 	$('#chess_login').click( login_to_game);
 	$('#chess_reset').click( reset_board);
+	$('$roll_dices').clock( roll_dices);
 	$('#do_move').click( do_move);
 	$('#move_div').hide();
 	game_status_update();
@@ -84,7 +84,7 @@ function fill_board_by_data(data) {
 	for(var i=0;i<data.length;i++) {
 		var o = data[i];
 		var id = '#square_'+ o.x +'_' + o.y;
-		var c = (o.piece!=null)?o.piece_color + o.piece:'';
+		//var c = (o.piece!=null)?o.piece_color + o.piece:'';
 		var pc= (o.piece!=null)?'piece'+o.piece_color:'';
 		var im = (o.piece!=null)?'<img class="piece '+pc+'" src="images/'+c+'.png">':'';
 		$(id).addClass(o.b_color+'_square').html(im);
@@ -137,3 +137,64 @@ function login_error(data,y,z,c) {
 function game_status_update() {
 	$.ajax({url: "chess.php/status/", success: update_status});
 }
+
+function update_status(data) {
+	last_update=new Date().getTime();
+	var game_stat_old = game_status;
+	game_status=data[0];
+	update_info();
+	clearTimeout(timer);
+	if(game_status.p_turn==me.piece_color &&  me.piece_color!=null) {
+		x=0;
+		// do play
+		if(game_stat_old.p_turn!=game_status.p_turn) {
+			fill_board();
+		}
+		$('#move_div').show(1000);
+		timer=setTimeout(function() { game_status_update();}, 15000);
+	} else {
+		// must wait for something
+		$('#move_div').hide(1000);
+		timer=setTimeout(function() { game_status_update();}, 4000);
+	}
+ 	
+}
+
+function update_info(){
+	$('#game_info').html("I am Player: "+ me.piece_color +", my name is "+me.username +'<br>Token='+me.token+'<br>Game state: '+game_status.status+', '+ game_status.p_turn+' must play now.');
+	
+	
+}
+
+function roll_dices(){
+	var dice1 = Math.floor(Math.random() * 6) + 1;
+	var dice2 = Math.floor(Math.random() * 6) + 1;
+	$("#dices_results").text("Φέρατε με τα ζάρια σας : "+dice1+' '+dice2);
+	$("#dice1").val(dice1);
+	$("#dice2").val(dice2);
+}
+
+function do_move() {
+	var s = $('#the_move').val();
+	
+	var a = s.trim().split(/[ ]+/);
+	if(a.length!=4) {
+		alert('Must give 4 numbers');
+		return;
+	}
+	$.ajax({url: "chess.php/board/piece/"+a[0]+'/'+a[1], 
+			method: 'PUT',
+			dataType: "json",
+			contentType: 'application/json',
+			data: JSON.stringify( {x: a[2], y: a[3]}),
+			headers: {"X-Token": me.token},
+			success: move_result,
+			error: login_error});
+	
+}
+
+function move_result(data){
+	game_status_update();
+	fill_board_by_data(data);
+}
+
