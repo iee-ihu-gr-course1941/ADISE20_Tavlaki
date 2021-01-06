@@ -29,6 +29,7 @@ $(function() {
   
 });
 
+
 function draw_empty_board(p) {
 	
 	if(p!='G') {p='R';}
