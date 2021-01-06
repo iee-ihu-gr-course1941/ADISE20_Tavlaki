@@ -57,19 +57,19 @@ function handle_piece($method, $x,$y,$input) {
 }
  
 function handle_player($method, $request,$input) {
-	switch ($b=array_shift($request)) {
-		case '':
-		case null: if($method=='GET') {show_users($method);}
-				   else {header("HTTP/1.1 400 Bad Request"); 
-						 print json_encode(['errormesg'=>"Method $method not allowed here."]);}
+    switch ($b=array_shift($request)) {
+        case '':
+        case null: if($method=='GET') {show_users($method);}
+                   else {header("HTTP/1.1 400 Bad Request"); 
+                         print json_encode(['errormesg'=>"Method $method not allowed here."]);}
                     break;
-        case 'G': 
-		case 'R': handle_user($method, $b,$input);
-					break;		
-		default: header("HTTP/1.1 404 Not Found");
-				 print json_encode(['errormesg'=>"Player $b not found."]);
+        case 'B': 
+        case 'W': handle_user($method, $b,$input);
+                    break;      
+        default: header("HTTP/1.1 404 Not Found");
+                 print json_encode(['errormesg'=>"Player $b not found."]);
                  break;
-	}
+    }
 }
  
 ?>
