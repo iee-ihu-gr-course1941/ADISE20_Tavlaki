@@ -32,10 +32,11 @@ $(function() {
 
 function draw_empty_board(p) {
 	
-	if(p!='G') {p='R';}
+	if(p!='B') {p='W';}
 	var draw_init = {
-		'R': {i1:8,i2:0,istep:-1,j1:1,j2:9,jstep:1},
-		'G': {i1:1,i2:9,istep:1, j1:8,j2:0,jstep:-1}
+
+		'B': {i1:13,i2:19,istep:-1,i3:19,i4:25,istep:1},
+		'W': {i1:7,i2:1,istep:-1, i1:19,i4:25,istep:-1}
 	};
 	var s=draw_init[p];
 	var t='<table id="chess_table">';
