@@ -27,19 +27,17 @@ function set_user($b,$input) { //arxikopiei enan xristi kai elegxei an einai dia
 		header("HTTP/1.1 400 Bad Request");
 		print json_encode(['errormesg'=>"No username given."]);
 		exit;
-	}
-	$username=$input['username'];
+	}$username=$input['username'];
 	global $mysqli;
-	$sql = 'select count(*) aw c from players where piece_color=? and username is not null';
+	$sql = 'select count(*) as c from players where piece_color=? and username is not null';
 	$st = $mysqli->prepare($sql);
 	$st->bind_param('s',$b);
 	$st->execute();
 	$res = $st->get_result();
 	$r = $res->fetch_all(MYSQLI_ASSOC);
-
 	if($r[0]['c']>0) {
 		header("HTTP/1.1 400 Bad Request");
-		print json_encode(['errormesg'=>"Player $b is already set.Please select another username"]);
+		print json_encode(['errormesg'=>"Player $b is already set. Please select another color."]);
 		exit;
 	}
 
