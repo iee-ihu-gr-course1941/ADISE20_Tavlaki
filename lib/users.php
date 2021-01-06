@@ -10,7 +10,7 @@ function show_users() {  //diavazoun tous players kai to tuponi se json
 	print json_encode($res->fetch_all(MYSQLI_ASSOC), JSON_PRETTY_PRINT)
 }
 
-function show_user($b) { //orisma G i R kai epistrefi se json ta stoixeia tou xristi
+function show_user($b) { //orisma B i W kai epistrefi se json ta stoixeia tou xristi
 	global $mysqli;
 	$sql = 'select username,piece_color from players where piece_color=?';
 	$st = $mysqli->prepare($sql);
