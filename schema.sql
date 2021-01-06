@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 06, 2021 at 10:49 AM
+-- Generation Time: Jan 06, 2021 at 04:13 PM
 -- Server version: 10.1.47-MariaDB-0+deb9u1
 -- PHP Version: 7.0.33-0+deb9u10
 
@@ -42,8 +42,8 @@ CREATE TABLE `board` (
   `x` tinyint(11) NOT NULL,
   `y` tinyint(11) NOT NULL,
   `b_color` enum('B','W') COLLATE utf8_bin NOT NULL,
-  `piece_color` enum('B','W') COLLATE utf8_bin NOT NULL,
-  `pieces` tinyint(11) NOT NULL
+  `piece_color` enum('B','W') COLLATE utf8_bin DEFAULT NULL,
+  `pieces` tinyint(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -51,59 +51,58 @@ CREATE TABLE `board` (
 --
 
 INSERT INTO `board` (`x`, `y`, `b_color`, `piece_color`, `pieces`) VALUES
-(1, 1, 'W', 'B', 1),
-(1, 2, 'W', 'B', 2),
-(1, 3, 'W', 'B', 3),
-(1, 4, 'W', 'B', 4),
-(1, 5, 'W', 'B', 5),
-(1, 6, 'W', 'B', 6),
-(1, 7, 'W', 'B', 7),
-(1, 8, 'W', 'B', 8),
-(1, 9, 'W', 'B', 9),
-(1, 10, 'W', 'B', 10),
-(1, 11, 'W', 'B', 11),
-(1, 12, 'W', 'B', 12),
-(1, 13, 'W', 'B', 13),
-(1, 14, 'W', 'B', 14),
-(1, 15, 'W', 'B', 15),
-(2, 0, 'B', '', 0),
-(3, 0, 'W', '', 0),
-(4, 0, 'B', '', 0),
-(5, 0, 'W', '', 0),
-(6, 0, 'B', '', 0),
-(7, 0, 'W', '', 0),
-(8, 0, 'B', '', 0),
-(9, 0, 'W', '', 0),
-(10, 0, 'B', '', 0),
-(11, 0, 'W', '', 0),
-(12, 0, 'B', '', 0),
-(13, 0, 'W', '', 0),
-(14, 0, 'B', '', 0),
-(15, 0, 'W', '', 0),
-(16, 0, 'B', '', 0),
-(17, 0, 'W', '', 0),
-(18, 0, 'B', '', 0),
-(19, 0, 'W', '', 0),
-(20, 0, 'B', '', 0),
-(21, 0, 'W', '', 0),
-(22, 0, 'B', '', 0),
-(23, 0, 'W', '', 0),
-(24, 1, 'B', 'W', 1);
-(24, 2, 'B', 'W', 2);
-(24, 3, 'B', 'W', 3);
-(24, 4, 'B', 'W', 4);
-(24, 5, 'B', 'W', 5);
-(24, 6, 'B', 'W', 6);
-(24, 7, 'B', 'W', 7);
-(24, 8, 'B', 'W', 8);
-(24, 9, 'B', 'W', 9);
-(24, 10, 'B', 'W', 10);
-(24, 11, 'B', 'W', 11);
-(24, 12, 'B', 'W', 12);
-(24, 13, 'B', 'W', 13);
-(24, 14, 'B', 'W', 14);
-(24, 15, 'B', 'W', 15);
-
+(1, 1, 'B', 'W', 1),
+(1, 2, 'B', 'W', 2),
+(1, 3, 'B', 'W', 3),
+(1, 4, 'B', 'W', 4),
+(1, 5, 'B', 'W', 5),
+(1, 6, 'B', 'W', 6),
+(1, 7, 'B', 'W', 7),
+(1, 8, 'B', 'W', 8),
+(1, 9, 'B', 'W', 9),
+(1, 10, 'B', 'W', 10),
+(1, 11, 'B', 'W', 11),
+(1, 12, 'B', 'W', 12),
+(1, 13, 'B', 'W', 13),
+(1, 14, 'B', 'W', 14),
+(1, 15, 'B', 'W', 15),
+(2, 1, 'W', NULL, NULL),
+(3, 1, 'B', NULL, NULL),
+(4, 1, 'W', NULL, NULL),
+(5, 1, 'B', NULL, NULL),
+(6, 1, 'W', NULL, NULL),
+(7, 1, 'B', NULL, NULL),
+(8, 1, 'W', NULL, NULL),
+(9, 1, 'B', NULL, NULL),
+(10, 1, 'W', NULL, NULL),
+(11, 1, 'B', NULL, NULL),
+(12, 1, 'W', NULL, NULL),
+(13, 1, 'B', NULL, NULL),
+(14, 1, 'W', NULL, NULL),
+(15, 1, 'B', NULL, NULL),
+(16, 1, 'W', NULL, NULL),
+(17, 1, 'B', NULL, NULL),
+(18, 1, 'W', NULL, NULL),
+(19, 1, 'B', NULL, NULL),
+(20, 1, 'W', NULL, NULL),
+(21, 1, 'B', NULL, NULL),
+(22, 1, 'W', NULL, NULL),
+(23, 1, 'B', NULL, NULL),
+(24, 1, 'W', 'W', 1),
+(24, 2, 'W', 'W', 2),
+(24, 3, 'W', 'W', 3),
+(24, 4, 'W', 'W', 4),
+(24, 5, 'W', 'W', 5),
+(24, 6, 'W', 'W', 6),
+(24, 7, 'W', 'W', 7),
+(24, 8, 'W', 'W', 8),
+(24, 9, 'W', 'W', 9),
+(24, 10, 'W', 'W', 10),
+(24, 11, 'W', 'W', 11),
+(24, 12, 'W', 'W', 12),
+(24, 13, 'W', 'W', 13),
+(24, 14, 'W', 'W', 14),
+(24, 15, 'W', 'W', 15);
 
 -- --------------------------------------------------------
 
@@ -115,8 +114,8 @@ CREATE TABLE `board_empty` (
   `x` tinyint(11) NOT NULL,
   `y` tinyint(11) NOT NULL,
   `b_color` enum('B','W') COLLATE utf8_bin NOT NULL,
-  `piece_color` enum('B','W') COLLATE utf8_bin NOT NULL,
-  `pieces` tinyint(11) NOT NULL
+  `piece_color` enum('B','W') COLLATE utf8_bin DEFAULT NULL,
+  `pieces` tinyint(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -124,58 +123,58 @@ CREATE TABLE `board_empty` (
 --
 
 INSERT INTO `board_empty` (`x`, `y`, `b_color`, `piece_color`, `pieces`) VALUES
-(1, 1, 'W', 'B', 1),
-(1, 2, 'W', 'B', 2),
-(1, 3, 'W', 'B', 3),
-(1, 4, 'W', 'B', 4),
-(1, 5, 'W', 'B', 5),
-(1, 6, 'W', 'B', 6),
-(1, 7, 'W', 'B', 7),
-(1, 8, 'W', 'B', 8),
-(1, 9, 'W', 'B', 9),
-(1, 10, 'W', 'B', 10),
-(1, 11, 'W', 'B', 11),
-(1, 12, 'W', 'B', 12),
-(1, 13, 'W', 'B', 13),
-(1, 14, 'W', 'B', 14),
-(1, 15, 'W', 'B', 15),
-(2, 0, 'B', '', 0),
-(3, 0, 'W', '', 0),
-(4, 0, 'B', '', 0),
-(5, 0, 'W', '', 0),
-(6, 0, 'B', '', 0),
-(7, 0, 'W', '', 0),
-(8, 0, 'B', '', 0),
-(9, 0, 'W', '', 0),
-(10, 0, 'B', '', 0),
-(11, 0, 'W', '', 0),
-(12, 0, 'B', '', 0),
-(13, 0, 'W', '', 0),
-(14, 0, 'B', '', 0),
-(15, 0, 'W', '', 0),
-(16, 0, 'B', '', 0),
-(17, 0, 'W', '', 0),
-(18, 0, 'B', '', 0),
-(19, 0, 'W', '', 0),
-(20, 0, 'B', '', 0),
-(21, 0, 'W', '', 0),
-(22, 0, 'B', '', 0),
-(23, 0, 'W', '', 0),
-(24, 1, 'B', 'W', 1);
-(24, 2, 'B', 'W', 2);
-(24, 3, 'B', 'W', 3);
-(24, 4, 'B', 'W', 4);
-(24, 5, 'B', 'W', 5);
-(24, 6, 'B', 'W', 6);
-(24, 7, 'B', 'W', 7);
-(24, 8, 'B', 'W', 8);
-(24, 9, 'B', 'W', 9);
-(24, 10, 'B', 'W', 10);
-(24, 11, 'B', 'W', 11);
-(24, 12, 'B', 'W', 12);
-(24, 13, 'B', 'W', 13);
-(24, 14, 'B', 'W', 14);
-(24, 15, 'B', 'W', 15);
+(1, 1, 'B', 'W', 1),
+(1, 2, 'B', 'W', 2),
+(1, 3, 'B', 'W', 3),
+(1, 4, 'B', 'W', 4),
+(1, 5, 'B', 'W', 5),
+(1, 6, 'B', 'W', 6),
+(1, 7, 'B', 'W', 7),
+(1, 8, 'B', 'W', 8),
+(1, 9, 'B', 'W', 9),
+(1, 10, 'B', 'W', 10),
+(1, 11, 'B', 'W', 11),
+(1, 12, 'B', 'W', 12),
+(1, 13, 'B', 'W', 13),
+(1, 14, 'B', 'W', 14),
+(1, 15, 'B', 'W', 15),
+(2, 1, 'W', NULL, NULL),
+(3, 1, 'B', NULL, NULL),
+(4, 1, 'W', NULL, NULL),
+(5, 1, 'B', NULL, NULL),
+(6, 1, 'W', NULL, NULL),
+(7, 1, 'B', NULL, NULL),
+(8, 1, 'W', NULL, NULL),
+(9, 1, 'B', NULL, NULL),
+(10, 1, 'W', NULL, NULL),
+(11, 1, 'B', NULL, NULL),
+(12, 1, 'W', NULL, NULL),
+(13, 1, 'B', NULL, NULL),
+(14, 1, 'W', NULL, NULL),
+(15, 1, 'B', NULL, NULL),
+(16, 1, 'W', NULL, NULL),
+(17, 1, 'B', NULL, NULL),
+(18, 1, 'W', NULL, NULL),
+(19, 1, 'B', NULL, NULL),
+(20, 1, 'W', NULL, NULL),
+(21, 1, 'B', NULL, NULL),
+(22, 1, 'W', NULL, NULL),
+(23, 1, 'B', NULL, NULL),
+(24, 1, 'W', 'W', 1),
+(24, 2, 'W', 'W', 2),
+(24, 3, 'W', 'W', 3),
+(24, 4, 'W', 'W', 4),
+(24, 5, 'W', 'W', 5),
+(24, 6, 'W', 'W', 6),
+(24, 7, 'W', 'W', 7),
+(24, 8, 'W', 'W', 8),
+(24, 9, 'W', 'W', 9),
+(24, 10, 'W', 'W', 10),
+(24, 11, 'W', 'W', 11),
+(24, 12, 'W', 'W', 12),
+(24, 13, 'W', 'W', 13),
+(24, 14, 'W', 'W', 14),
+(24, 15, 'W', 'W', 15);
 
 -- --------------------------------------------------------
 
@@ -207,44 +206,36 @@ DELIMITER ;
 --
 -- Table structure for table `players`
 --
-DROP TABLE IF EXISTS `players`;
 
 CREATE TABLE `players` (
   `Username` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `piece_color` enum('B','W') COLLATE utf8_bin NOT NULL,
+  `p_color` enum('B','W') COLLATE utf8_bin NOT NULL,
   `Token` varchar(100) COLLATE utf8_bin NOT NULL,
   `last_action` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
+-- Dumping data for table `players`
+--
+
+INSERT INTO `players` (`Username`, `p_color`, `Token`, `last_action`) VALUES
+(NULL, '', '', '2021-01-06 13:42:21');
+
+--
 -- Indexes for dumped tables
 --
-LOCK TABLES `players` WRITE;
 
-INSERT INTO `players` VALUES ('bbbb','B','08d309a346b72c2eca5281014e8d3cad',NULL),('wwww','W','e073c6b1f674e1df58891cc2b7133cbc',NULL);
-
-UNLOCK TABLES;
-
-
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `clean_board`()
-BEGIN
-  replace into board select * from board_empty;
-  update `players` set username=null, token=null;
-    update `game_status` set `status`='not active', `p_turn`=null, `result`=null;
-    END ;;
-DELIMITER ;
 --
 -- Indexes for table `board`
 --
 ALTER TABLE `board`
-  ADD PRIMARY KEY (`x`,`piece_color`);
+  ADD PRIMARY KEY (`x`,`y`);
 
 --
 -- Indexes for table `board_empty`
 --
 ALTER TABLE `board_empty`
-  ADD PRIMARY KEY (`x`,`piece_color`);
+  ADD PRIMARY KEY (`x`,`y`);
 
 --
 -- Indexes for table `players`
