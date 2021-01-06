@@ -150,10 +150,11 @@ DELIMITER ;
 --
 -- Table structure for table `players`
 --
+DROP TABLE IF EXISTS `players`;
 
 CREATE TABLE `players` (
   `Username` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `p_color` enum('B','W') COLLATE utf8_bin NOT NULL,
+  `piece_color` enum('B','W') COLLATE utf8_bin NOT NULL,
   `Token` varchar(100) COLLATE utf8_bin NOT NULL,
   `last_action` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -161,7 +162,21 @@ CREATE TABLE `players` (
 --
 -- Indexes for dumped tables
 --
+LOCK TABLES `players` WRITE;
 
+INSERT INTO `players` VALUES ('bbbb','B','08d309a346b72c2eca5281014e8d3cad',NULL),('wwww','W','e073c6b1f674e1df58891cc2b7133cbc',NULL);
+
+UNLOCK TABLES;
+
+
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `clean_board`()
+BEGIN
+  replace into board select * from board_empty;
+  update `players` set username=null, token=null;
+    update `game_status` set `status`='not active', `p_turn`=null, `result`=null;
+    END ;;
+DELIMITER ;
 --
 -- Indexes for table `board`
 --
