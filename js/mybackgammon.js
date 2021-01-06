@@ -25,7 +25,7 @@ $(function() {
     
   };
   
-  //drawBoard();
+  
   
 });
 
@@ -37,8 +37,7 @@ function draw_empty_board(p) {
 		
 		'W': {i1:12,i2:0,istep:-1,j1:12,j2:0,jstep:-1},
 		'B': {i1:11,i2:0,istep:-1, j1:12,j2:0,jstep:-1}
-		//'R': {i1:8,i2:0,istep:-1,j1:1,j2:9,jstep:1},
-		//'G': {i1:1,i2:9,istep:1, j1:8,j2:0,jstep:-1}
+
 	};
 	var s=draw_init[p];
 	var t='<table id="chess_table">';
@@ -52,7 +51,7 @@ function draw_empty_board(p) {
 	t+='</table>';
 	
 	$('#chess_board').html(t);
-	//$('.chess_square').click(click_on_piece);
+	//xtupaei error   $('.chess_square').click(click_on_piece);
 }
 
 
@@ -77,11 +76,8 @@ $(function () {
 
 
 function fill_board() {
-/*	$.ajax({url: "chess.php/board/", 
-		headers: {"X-Token": me.token},
-		success: fill_board_by_data });
-*/
 	$.ajax({url: "chess.php/board/", 
+		//headers: {"X-Token": me.token},
 		success: fill_board_by_data });
 }
 
@@ -97,20 +93,10 @@ function fill_board_by_data(data) {
 		
 		var o = data[i];
 		var id = '#square_'+ o.x + '_' + o.y ;
-		// var id = '#square_'+ o.x +'_' + o.y;
-		//var c = (o.piece!=null)?o.piece_color + o.piece:'';
 		var pc = (o.piece!=null)?o.piece_color:'';
 		var im = (o.piece!=null)?'<img class="piece_1" src="images/'+pc+'.png">':'';
 		$(id).addClass(o.b_color+'_square').html(im);
 		
-		/*
-		var o = data[i];
-		var id = '#square_'+ o.x +'_' + o.y;
-		var c = (o.piece!=null)?o.piece_color + o.piece:'';
-		var pc= (o.piece!=null)?'piece'+o.piece_color:'';
-		var im = (o.piece!=null)?'<img class="piece '+pc+'" src="images/'+c+'.png">':'';
-		$(id).addClass(o.b_color+'_square').html(im);
-		*/
 	}
  
 	$('.ui-droppable').droppable( "disable" );

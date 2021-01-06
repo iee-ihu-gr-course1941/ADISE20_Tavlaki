@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 06, 2021 at 06:13 PM
+-- Generation Time: Jan 06, 2021 at 09:33 PM
 -- Server version: 10.1.47-MariaDB-0+deb9u1
 -- PHP Version: 7.0.33-0+deb9u10
 
@@ -213,13 +213,6 @@ CREATE TABLE `players` (
   `Token` varchar(100) COLLATE utf8_bin NOT NULL,
   `last_action` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Dumping data for table `players`
---
-
-INSERT INTO `players` (`Username`, `p_color`, `Token`, `last_action`) VALUES
-(NULL, '', '', '2021-01-06 13:42:21');
 
 --
 -- Indexes for dumped tables
