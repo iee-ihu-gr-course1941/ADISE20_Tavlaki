@@ -9,7 +9,7 @@ function show_board() {
 	$st->execute();
 	$res = $st->get_result();
 	
-/*	$b=current_color($input['token']);
+	$b=current_color($input['token']);
 	if($b) {
 		show_board_by_player($b);
 	} else {
@@ -17,7 +17,17 @@ function show_board() {
 		header('Content-type: application/json');
 		print json_encode($res->fetch_all(MYSQLI_ASSOC), JSON_PRETTY_PRINT);
 	
-//}}
+}
+
+
+
+
+
+
+}
+
+
+
 
 function reset_board() {
 	global $mysqli;
@@ -28,7 +38,4 @@ function reset_board() {
 }
 
 
-
-
-}
 ?>

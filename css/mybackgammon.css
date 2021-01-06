@@ -3,6 +3,8 @@
 #chess_table {border-collapse: collapse;}
 TD.R_square {background-color:#DDD;}
 TD.G_square {background-color:#FFF;}
+TD.pmove {border:3px solid blue; background-color:yellow;}
+TD.tomove {border:3px solid blue; background-color:blue;}
 
 .board {
   width: 610px;
